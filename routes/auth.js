@@ -24,7 +24,9 @@ router.post('/', (req, res) => {
 		.then(result => {
 			const check = hpwd.verify(req.body.password, result[0].password)
 			if (check) {
-				jwt.sign({id:result[0].id, user_type:result[0].user_type}, 'secret', {expiresIn: '10d'}, (err, token) => {
+				jwt.sign({id:result[0].id, user_type:result[0].user_type},
+					 'secret', {expiresIn: '10d'},
+					 (err, token) => {
 					res.send({token})
 				})
 			}
